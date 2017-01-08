@@ -1,11 +1,11 @@
-Tensorflow supports both Python 2.7 and Python 3.3+. Note that for Windows, TensorFlow supports only 64-bit Python 3.5. 
+Tensorflow supports both Python 2.7 and Python 3.3+. <b>Note that for Windows, TensorFlow supports only 64-bit Python 3.5.</b>
 For this course, I will use Python 2.7. But you’re welcome to use either Python 2 or Python 3 for the assignments. The starter code, though, will be in Python 2.7
 
-Unless your computer has GPU, you should install Tensorflow without GPU support.
+Google has a pretty detailed instruction on how to download and setup Tensorflow. You can follow it here: https://www.tensorflow.org/get_started/os_setup
 
-Google has a pretty detailed instruction on how to download and setup Tensorflow. You can follow it here. 
+Unless your computer has GPU, you should install Tensorflow without GPU support. My recommendation is always set up Tensorflow using virtualenv. For the list of dependencies, please consult the file requirements.txt. This list will be updated as the course progresses.
 
-My recommendation is always set up Tensorflow using virtualenv. Below is a simpler instruction on how to install tensorflow.
+Below is a simpler instruction on how to install tensorflow for people using Mac OS. If you have any problem installing Tensorflow, feel free to post it on Piazza: https://piazza.com/class/ix3wqoxjg1v5co
 
 ## Install TensorFlow<br>
 ### For Mac OS
@@ -65,6 +65,7 @@ $ virtualenv venv --distribute --system-site-packages
 
 ### For Windows
 
+
 ### On the cloud
 If you don't want to install TensorFlow, you can use TensorFlow over the web.
 
@@ -73,3 +74,4 @@ You can use Tensorflow over the web at https://cloud.sagemath.com/
 Simply click on the link, create an account (or log in with your GitHub), and create a TensorFlow project.
 
 #### Jupyter
+You can also use Jupyter notebook to write TensorFlow programs.

@@ -5,7 +5,7 @@ Google has a pretty detailed instruction on how to download and setup Tensorflow
 
 Unless your computer has GPU, you should install Tensorflow without GPU support. My recommendation is always set up Tensorflow using virtualenv. For the list of dependencies, please consult the file requirements.txt. This list will be updated as the course progresses.
 
-Below is a simpler instruction on how to install tensorflow for people using Mac OS. If you have any problem installing Tensorflow, feel free to post it on Piazza: https://piazza.com/class/ix3wqoxjg1v5co
+Below is a simpler instruction on how to install tensorflow for people using Mac OS. If you have any problem installing Tensorflow, feel free to post it on Piazza: piazza.com/stanford/winter2017/cs20si
 
 ## Install TensorFlow<br>
 ### For Mac OS

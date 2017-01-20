@@ -44,8 +44,8 @@ with tf.Session() as sess:
 	for i in range(100): # run 100 epochs
 		total_loss = 0
 		for x, y in data:
-			# Session runs optimizer to minimize loss
-			_, l = sess.run([optimizer, loss], feed_dict={X: x, Y:y}) 
+			# Session runs optimizer to minimize loss and fetch the value of loss
+			# TO DO: write sess.run()
 			total_loss += l
 		print "Epoch {0}: {1}".format(i, total_loss/n_samples)
 	

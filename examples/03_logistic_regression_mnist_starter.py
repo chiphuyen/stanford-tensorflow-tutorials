@@ -23,7 +23,6 @@ mnist = input_data.read_data_sets('/data/mnist', one_hot=True)
 # each image in the MNIST data is of shape 28*28 = 784
 # therefore, each image is represented with a 1x784 tensor
 # there are 10 classes for each image, corresponding to digits 0 - 9. 
-# each lable is one hot vector.
 
 
 # Step 3: create weights and bias
@@ -47,7 +46,7 @@ mnist = input_data.read_data_sets('/data/mnist', one_hot=True)
 
 
 # Step 6: define training op
-# using gradient descent with learning rate=learning_rate to minimize loss
+# using gradient descent to minimize loss
 
 
 with tf.Session() as sess:

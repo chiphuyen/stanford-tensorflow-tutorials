@@ -9,7 +9,7 @@ You can download heart.csv in the data folder.
 
 import tensorflow as tf
 
-DATA_PATH = '/Users/Chip/data/simple_data/heart.csv'
+DATA_PATH = 'data/heart.csv'
 BATCH_SIZE = 3
 N_FEATURES = 9
 

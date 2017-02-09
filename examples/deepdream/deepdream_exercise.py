@@ -1,6 +1,4 @@
 """DeepDream.
-
-Exercise: Finish coding the Deep Dream algorithm.
 """
 from __future__ import absolute_import
 from __future__ import division
@@ -129,11 +127,11 @@ def main(unused_argv):
     # EXERCISE: Implemement the Deep Dream algorithm here!
     ################################################################
 
-  # Uncomment these tools to save the image.
-  
   # Save the image.
-  # image = normalize_image(image)
-  # save_jpeg(FLAGS.jpeg_file, image)
+  stddev = 0.1
+  image = (image - image.mean()) / max(image.std(), 1e-4) * stddev + 0.5
+  image = normalize_image(image)
+  save_jpeg(FLAGS.jpeg_file, image)
 
 
 if __name__ == '__main__':

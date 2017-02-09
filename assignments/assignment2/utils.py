@@ -36,7 +36,7 @@ def get_resized_image(img_path, height, width, save=True):
     image = ImageOps.fit(image, (width, height), Image.ANTIALIAS)
     if save:
         image_dirs = img_path.split('/')
-        image_dirs[-1] = 'big_' + image_dirs[-1]
+        image_dirs[-1] = 'resized_' + image_dirs[-1]
         out_path = '/'.join(image_dirs)
         if not os.path.exists(out_path):
             image.save(out_path)

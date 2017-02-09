@@ -4,7 +4,7 @@ by Gatys et al. in TensorFlow.
 Author: Chip Huyen (huyenn@stanford.edu)
 Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
 For more details, please read the assignment handout:
-
+http://web.stanford.edu/class/cs20si/assignments/a2.pdf
 """
 from __future__ import print_function
 

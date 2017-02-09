@@ -4,7 +4,7 @@ by Gatys et al. in TensorFlow.
 Author: Chip Huyen (huyenn@stanford.edu)
 Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
 For more details, please read the assignment handout:
-
+http://web.stanford.edu/class/cs20si/assignments/a2.pdf
 """
 from __future__ import print_function
 
@@ -33,14 +33,6 @@ W = [0.5, 1.0, 1.5, 3.0, 4.0] # give more weights to deeper layers.
 # Layer used for content features. You can change this.
 CONTENT_LAYER = 'conv4_2'
 
-# emphasis on content loss and style loss, corresponding to ALPHA and BETA in the paper.
-# the paper suggests the ratio ALPHA/BETA = 0.001 or 0.0001
-# since we started with the content image, we place a lot more importance
-# on the style loss.
-# in general, you 
-CONTENT_WEIGHT = 1
-STYLE_WEIGHT = 1000 
-
 ITERS = 300
 LR = 2.0
 
@@ -60,9 +52,6 @@ EXPECTED_BYTES = 534904783
 def _create_content_loss(p, f):
     """ Calculate the loss between the feature representation of the
     content image and the generated image.
-    The paper actually uses this function 0.5 * tf.reduce_sum((f - p) ** 2)
-    but we use a constant similar to the constant in the style loss function
-    for faster convergence.
     
     Inputs: 
         p, f are just P, F in the paper 
@@ -84,13 +73,14 @@ def _gram_matrix(F, N, M):
 def _single_style_loss(a, g):
     """ Calculate the style loss at a certain layer
     Inputs:
-        a is the style representation of the real image
-        g is the style representation of the generated image
+        a is the feature representation of the real image
+        g is the feature representation of the generated image
     Output:
-        the style loss
+        the style loss at a certain layer (which is E_l in the paper)
 
-    Hint: you'll have to use the function _gram_matrix()
-    
+    Hint: 1. you'll have to use the function _gram_matrix()
+        2. we'll use the same coefficient for style loss as in the paper
+        3. a and g are feature representation, not gram matrices
     """
     pass
 
@@ -105,7 +95,7 @@ def _create_style_loss(A, model):
     pass
     ###############################
 
-def _create_lossess(model, input_image, content_image, style_image):
+def _create_losses(model, input_image, content_image, style_image):
     with tf.variable_scope('loss') as scope:
         with tf.Session() as sess:
             sess.run(input_image.assign(content_image)) # assign content image to the input variable
@@ -118,7 +108,8 @@ def _create_lossess(model, input_image, content_image, style_image):
         style_loss = _create_style_loss(A, model)
 
         ##########################################
-        ## TO DO: create total loss
+        ## TO DO: create total loss. 
+        ## Hint: don't forget the content loss and style loss weights
         
         ##########################################
 
@@ -130,7 +121,7 @@ def _create_summary(model):
     """
     pass
 
-def train(model, input_image, initial_image):
+def train(model, generated_image, initial_image):
     """ Train your model.
     Don't forget to create folders for checkpoints and outputs.
     """
@@ -159,7 +150,6 @@ def train(model, input_image, initial_image):
             if (index + 1) % skip_step == 0:
                 ###############################
                 ## TO DO: obtain generated image and loss
-
 
                 ###############################
                 gen_image = gen_image + MEAN_PIXELS
@@ -190,7 +180,7 @@ def main():
     style_image = utils.get_resized_image(STYLE_IMAGE, IMAGE_HEIGHT, IMAGE_WIDTH)
     style_image = style_image - MEAN_PIXELS
 
-    model['content_loss'], model['style_loss'], model['total_loss'] = _create_lossess(model, 
+    model['content_loss'], model['style_loss'], model['total_loss'] = _create_losses(model, 
                                                     input_image, content_image, style_image)
     ###############################
     ## TO DO: create optimizer

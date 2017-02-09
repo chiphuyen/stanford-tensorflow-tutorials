@@ -4,7 +4,7 @@
 Author: Chip Huyen (huyenn@stanford.edu)
 Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
 For more details, please read the assignment handout:
-
+http://web.stanford.edu/class/cs20si/assignments/a2.pdf
 """
 
 import numpy as np
@@ -18,7 +18,7 @@ def _weights(vgg_layers, layer, expected_layer_name):
     b = vgg_layers[0][layer][0][0][2][0][1]
     layer_name = vgg_layers[0][layer][0][0][0][0]
     assert layer_name == expected_layer_name
-    return W, b
+    return W, b.reshape(b.size)
 
 def _conv2d_relu(vgg_layers, prev_layer, layer, layer_name):
     """ Return the Conv2D layer with RELU using the weights, biases from the VGG
@@ -38,6 +38,8 @@ def _conv2d_relu(vgg_layers, prev_layer, layer, layer_name):
     W and b returned from _weights() are numpy arrays, so you have
     to convert them to TF tensors using tf.constant.
     Note that you'll have to do apply relu on the convolution.
+    Hint for choosing strides size: 
+        for small images, you probably don't want to skip any pixel
     """
     pass
 
@@ -49,6 +51,7 @@ def _avgpool(prev_layer):
 
     Output:
         the output of the tf.nn.avg_pool() function.
+    Hint for choosing strides and kszie: choose what you feel appropriate
     """
     pass
 

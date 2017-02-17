@@ -3,4 +3,5 @@
 
 *.SUNet
 
-data/*
+
+examples/checkpoints/*

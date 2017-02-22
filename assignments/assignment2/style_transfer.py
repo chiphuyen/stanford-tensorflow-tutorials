@@ -133,7 +133,7 @@ def train(model, generated_image, initial_image):
         ## 1. initialize your variables
         ## 2. create writer to write your graph
         ###############################
-        sess.run(input_image.assign(initial_image))
+        sess.run(generated_image.assign(initial_image))
         ckpt = tf.train.get_checkpoint_state(os.path.dirname('checkpoints/checkpoint'))
         if ckpt and ckpt.model_checkpoint_path:
             saver.restore(sess, ckpt.model_checkpoint_path)

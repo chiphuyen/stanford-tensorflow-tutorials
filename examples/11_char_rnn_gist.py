@@ -47,7 +47,8 @@ def create_rnn(seq, hidden_size=HIDDEN_SIZE):
     cell = tf.nn.rnn_cell.GRUCell(hidden_size)
     in_state = tf.placeholder_with_default(
             cell.zero_state(tf.shape(seq)[0], tf.float32), [None, hidden_size])
-    # this line is to allow for dynamic batch size
+    # this line to calculate the real length of seq
+    # all seq are padded to be of the same length which is NUM_STEPS
     length = tf.reduce_sum(tf.reduce_max(tf.sign(seq), 2), 1)
     output, out_state = tf.nn.dynamic_rnn(cell, seq, length, in_state)
     return output, in_state, out_state
@@ -59,8 +60,9 @@ def create_model(seq, temp, vocab, hidden=HIDDEN_SIZE):
     # it will create w and b for us
     logits = tf.contrib.layers.fully_connected(output, len(vocab), None)
     loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits[:, :-1], seq[:, 1:]))
-    # sample the next word from Maxwell-Boltzmann Distribution with temperature temp
-    sample = tf.multinomial(tf.exp(logits[:, -1] / temp), 1)[:, 0]
+    # sample the next character from Maxwell-Boltzmann Distribution with temperature temp
+    # it works equally well without tf.exp
+    sample = tf.multinomial(tf.exp(logits[:, -1] / temp), 1)[:, 0] 
     return loss, sample, in_state, out_state
 
 def training(vocab, seq, loss, optimizer, global_step, temp, sample, in_state, out_state):

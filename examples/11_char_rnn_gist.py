@@ -15,10 +15,10 @@ DATA_PATH = '../data/arvix_abstracts.txt'
 HIDDEN_SIZE = 200
 BATCH_SIZE = 64
 NUM_STEPS = 50
-SKIP_STEP = 1
+SKIP_STEP = 40
 TEMPRATURE = 0.7
 LR = 0.003
-LEN_GENERATED = 100
+LEN_GENERATED = 300
 
 def vocab_encode(text, vocab):
     return [vocab.index(x) + 1 for x in text if x in vocab]
@@ -87,11 +87,14 @@ def training(vocab, seq, loss, optimizer, global_step, temp, sample, in_state, o
             iteration += 1
 
 def online_intference(sess, vocab, seq, sample, temp, in_state, out_state, seed='T'):
+    """ Generate sequence one character at a time, based on the previous character
+    """
     sentence = seed
     state = None
     for _ in range(LEN_GENERATED):
         batch = [vocab_encode(sentence[-1], vocab)]
         feed = {seq: batch, temp: TEMPRATURE}
+        # for the first decoder step, the state is None
         if state is not None:
             feed.update({in_state: state})
         index, state = sess.run([sample, out_state], feed)

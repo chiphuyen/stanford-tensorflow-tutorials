@@ -11,6 +11,7 @@ Word2vec skip-gram model with NCE loss<br>
 Convnets with MNIST<br>
 Autoencoder (by Nishith Khandwala)<br>
 Deepdream (by Jon Shlens)<br>
+Character-level language modeling <br>
 <br>
 ### In the folder "assignments":<br>
 Style Transfer<br>

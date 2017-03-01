@@ -15,6 +15,7 @@ Character-level language modeling <br>
 <br>
 ### In the folder "assignments":<br>
 Style Transfer<br>
+Chatbot using sequence to sequence with attention<br>
 <br>
 ## Misc<br>
 Examples on how to use data readers, TFRecord<br>

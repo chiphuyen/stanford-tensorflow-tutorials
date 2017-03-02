@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 A neural chatbot using sequence to sequence model with
 attentional decoder. 
 
@@ -43,3 +44,7 @@ If you find the tutorial helpful, please head over to Anonymous Chatlog Donation
 to see how you can help us create the first realistic dialogue dataset.
 
 Thank you very much!
+=======
+You can see sample conversations in output_convo.txt <br>
+Starter code and assignment handout will be out in a few hours
+>>>>>>> origin/master

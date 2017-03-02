@@ -11,77 +11,77 @@ Created by Chip Huyen as the starter code for assignment 3,
 class CS 20SI: "TensorFlow for Deep Learning Research"
 cs20si.stanford.edu
 
-The detailed assignment handout can be found at http://web.stanford.edu/class/cs20si/assignments/a3.pdf
+The detailed assignment handout and information on training time can be found at http://web.stanford.edu/class/cs20si/assignments/a3.pdf 
 
 <h2>Sample conversation</h2>
-HUMAN ++++ hi
-BOT ++++ hi . what ' s your name ?
-HUMAN ++++ i'm chip
-BOT ++++ please .
-HUMAN ++++ please what?
-BOT ++++ i don ' t know what to say .
-HUMAN ++++ where are you from?
-BOT ++++ california .
-HUMAN ++++ do you like california?
-BOT ++++ i ' m okay .
-HUMAN ++++ i like california a lot
-BOT ++++ of what ?
-HUMAN ++++ i live here
-BOT ++++ and what is it ?
-HUMAN ++++ california
-BOT ++++ i don ' t know what to say .
-HUMAN ++++ i'm a student here
-BOT ++++ and get it out of here .
-HUMAN ++++ what do you like to do in your free time?
-BOT ++++ and what about the gun ?
-HUMAN ++++ do you have a gun?
-BOT ++++ yes .
-HUMAN ++++ you're dangerous!
-BOT ++++ i ' m not .
-HUMAN ++++ do you go hunting?
-BOT ++++ i can do .
-HUMAN ++++ what do you hunt?
-BOT ++++ virgin .
-HUMAN ++++ that's very bad
-BOT ++++ and you in love ?
-HUMAN ++++ no i'm not
-BOT ++++ please - -
-HUMAN ++++ okay, i am
-BOT ++++ and you are good .
-HUMAN ++++ yeah i am good too.
-BOT ++++ good good to you .
-HUMAN ++++ are you in love?
-BOT ++++ i ' m ready .
-HUMAN ++++ ready for what?
-BOT ++++ for what ?
-HUMAN ++++ for what?
-BOT ++++ i don ' t know what to say .
-HUMAN ++++ tell me
-BOT ++++ i can do it .
-HUMAN ++++ okay, tell me what you're ready for
-BOT ++++ i ' m doing you .
-HUMAN ++++ no you're not
-BOT ++++ please !
-HUMAN ++++ this is a strange conversation
-BOT ++++ i don ' t know what to say .
-HUMAN ++++ are you a guy?
-BOT ++++ of what ?
-HUMAN ++++ are you a boy?
-BOT ++++ i ' m fine .
-HUMAN ++++ are you a man?
-BOT ++++ i ' m a little .
-HUMAN ++++ what's your name?
-BOT ++++ chris -
-HUMAN ++++ chris who?
-BOT ++++ cornelius .
-HUMAN ++++ so i guess you're a guy.
-BOT ++++ i am .
-HUMAN ++++ okay
-BOT ++++ okay ?
-HUMAN ++++ do you have a girlfriend?
-BOT ++++ i ' m sure .
-HUMAN ++++ what's her name?
-BOT ++++ let ' s talk about something else .
+HUMAN ++++ hi <br>
+BOT ++++ hi . what ' s your name ?<br>
+HUMAN ++++ i'm chip<br>
+BOT ++++ please .<br>
+HUMAN ++++ please what?<br>
+BOT ++++ i don ' t know what to say .<br>
+HUMAN ++++ where are you from?<br>
+BOT ++++ california .<br>
+HUMAN ++++ do you like california?<br>
+BOT ++++ i ' m okay .<br>
+HUMAN ++++ i like california a lot<br>
+BOT ++++ of what ?<br>
+HUMAN ++++ i live here<br>
+BOT ++++ and what is it ?<br>
+HUMAN ++++ california<br>
+BOT ++++ i don ' t know what to say .<br>
+HUMAN ++++ i'm a student here<br>
+BOT ++++ and get it out of here .<br>
+HUMAN ++++ what do you like to do in your free time?<br>
+BOT ++++ and what about the gun ?<br>
+HUMAN ++++ do you have a gun?<br>
+BOT ++++ yes .<br>
+HUMAN ++++ you're dangerous!<br>
+BOT ++++ i ' m not .<br>
+HUMAN ++++ do you go hunting?<br>
+BOT ++++ i can do .<br>
+HUMAN ++++ what do you hunt?<br>
+BOT ++++ virgin .<br>
+HUMAN ++++ that's very bad<br>
+BOT ++++ and you in love ?<br>
+HUMAN ++++ no i'm not<br>
+BOT ++++ please - -<br>
+HUMAN ++++ okay, i am<br>
+BOT ++++ and you are good .<br>
+HUMAN ++++ yeah i am good too.<br>
+BOT ++++ good good to you .<br>
+HUMAN ++++ are you in love?<br>
+BOT ++++ i ' m ready .<br>
+HUMAN ++++ ready for what?<br>
+BOT ++++ for what ?<br>
+HUMAN ++++ for what?<br>
+BOT ++++ i don ' t know what to say .<br>
+HUMAN ++++ tell me<br>
+BOT ++++ i can do it .<br>
+HUMAN ++++ okay, tell me what you're ready for<br>
+BOT ++++ i ' m doing you .<br>
+HUMAN ++++ no you're not<br>
+BOT ++++ please !<br>
+HUMAN ++++ this is a strange conversation<br>
+BOT ++++ i don ' t know what to say .<br>
+HUMAN ++++ are you a guy?<br>
+BOT ++++ of what ?<br>
+HUMAN ++++ are you a boy?<br>
+BOT ++++ i ' m fine .<br>
+HUMAN ++++ are you a man?<br>
+BOT ++++ i ' m a little .<br>
+HUMAN ++++ what's your name?<br>
+BOT ++++ chris -<br>
+HUMAN ++++ chris who?<br>
+BOT ++++ cornelius .<br>
+HUMAN ++++ so i guess you're a guy.<br>
+BOT ++++ i am .<br>
+HUMAN ++++ okay<br>
+BOT ++++ okay ?<br>
+HUMAN ++++ do you have a girlfriend?<br>
+BOT ++++ i ' m sure .<br>
+HUMAN ++++ what's her name?<br>
+BOT ++++ let ' s talk about something else .<br>
 
 See output_convo.txt for more sample conversations.
 

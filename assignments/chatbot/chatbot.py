@@ -137,7 +137,6 @@ def train():
     model.build_graph()
 
     saver = tf.train.Saver()
-    initial_step = 0
 
     with tf.Session() as sess:
         print('Running session')

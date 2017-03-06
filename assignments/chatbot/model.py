@@ -110,12 +110,9 @@ class ChatBotModel(object):
         print('Create optimizer... \nIt might take a couple of minutes depending on how many buckets you have.')
         with tf.variable_scope('training') as scope:
             self.global_step = tf.Variable(0, dtype=tf.int32, trainable=False, name='global_step')
-            # self.lr = tf.Variable(float(config.LR), trainable=False)
-            # self.lr_decay_op = self.lr.assign(self.lr * config.LR_DECAY_FACTOR)
-            self.lr = config.LR
 
             if not self.fw_only:
-                self.optimizer = tf.train.GradientDescentOptimizer(self.lr)
+                self.optimizer = tf.train.GradientDescentOptimizer(config.LR)
                 trainables = tf.trainable_variables()
                 self.gradient_norms = []
                 self.train_ops = []

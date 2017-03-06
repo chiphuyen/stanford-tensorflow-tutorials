@@ -93,10 +93,10 @@ https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html
 Unzip it
 
 Step 2: python data.py
-This will do all the pre-processing for the Cornell dataset.
+<br>This will do all the pre-processing for the Cornell dataset.
 
 Step 3:
-python chatbot.py --mode [train/chat]
+python chatbot.py --mode [train/chat] <br>
 If mode is train, then you train the chatbot. By default, the model will
 restore the previously trained weights (if there is any) and continue
 training up on that.

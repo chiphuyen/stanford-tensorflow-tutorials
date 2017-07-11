@@ -19,6 +19,7 @@ from __future__ import print_function
 
 import argparse
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 import random
 import sys
 import time
@@ -33,7 +34,7 @@ import data
 def _get_random_bucket(train_buckets_scale):
     """ Get a random bucket from which to choose a training sample """
     rand = random.random()
-    return min([i for i in xrange(len(train_buckets_scale))
+    return min([i for i in range(len(train_buckets_scale))
                 if train_buckets_scale[i] > rand])
 
 def _assert_lengths(encoder_size, decoder_size, encoder_inputs, decoder_inputs, decoder_masks):
@@ -59,9 +60,9 @@ def run_step(sess, model, encoder_inputs, decoder_inputs, decoder_masks, bucket_
 
     # input feed: encoder inputs, decoder inputs, target_weights, as provided.
     input_feed = {}
-    for step in xrange(encoder_size):
+    for step in range(encoder_size):
         input_feed[model.encoder_inputs[step].name] = encoder_inputs[step]
-    for step in xrange(decoder_size):
+    for step in range(decoder_size):
         input_feed[model.decoder_inputs[step].name] = decoder_inputs[step]
         input_feed[model.decoder_masks[step].name] = decoder_masks[step]
 
@@ -75,7 +76,7 @@ def run_step(sess, model, encoder_inputs, decoder_inputs, decoder_masks, bucket_
                        model.losses[bucket_id]]  # loss for this batch.
     else:
         output_feed = [model.losses[bucket_id]]  # loss for this batch.
-        for step in xrange(decoder_size):  # output logits.
+        for step in range(decoder_size):  # output logits.
             output_feed.append(model.outputs[bucket_id][step])
 
     outputs = sess.run(output_feed, input_feed)
@@ -91,12 +92,12 @@ def _get_buckets():
     """
     test_buckets = data.load_data('test_ids.enc', 'test_ids.dec')
     data_buckets = data.load_data('train_ids.enc', 'train_ids.dec')
-    train_bucket_sizes = [len(data_buckets[b]) for b in xrange(len(config.BUCKETS))]
+    train_bucket_sizes = [len(data_buckets[b]) for b in range(len(config.BUCKETS))]
     print("Number of samples in each bucket:\n", train_bucket_sizes)
     train_total_size = sum(train_bucket_sizes)
     # list of increasing numbers from 0 to 1 that we'll use to select a bucket.
     train_buckets_scale = [sum(train_bucket_sizes[:i + 1]) / train_total_size
-                           for i in xrange(len(train_bucket_sizes))]
+                           for i in range(len(train_bucket_sizes))]
     print("Bucket scale:\n", train_buckets_scale)
     return test_buckets, data_buckets, train_buckets_scale
 
@@ -117,7 +118,7 @@ def _check_restore_parameters(sess, saver):
 
 def _eval_test_set(sess, model, test_buckets):
     """ Evaluate on the test set. """
-    for bucket_id in xrange(len(config.BUCKETS)):
+    for bucket_id in range(len(config.BUCKETS)):
         if len(test_buckets[bucket_id]) == 0:
             print("  Test: empty bucket %d" % (bucket_id))
             continue
@@ -175,7 +176,7 @@ def _get_user_input():
 
 def _find_right_bucket(length):
     """ Find the proper bucket for an encoder input based on its length """
-    return min([b for b in xrange(len(config.BUCKETS))
+    return min([b for b in range(len(config.BUCKETS))
                 if config.BUCKETS[b][0] >= length])
 
 def _construct_response(output_logits, inv_dec_vocab):

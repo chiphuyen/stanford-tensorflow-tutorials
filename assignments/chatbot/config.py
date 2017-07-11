@@ -47,7 +47,8 @@ These buckets size seem to work the best
 # [37049, 33519, 30223, 33513, 37371]
 # BUCKETS = [(8, 10), (12, 14), (16, 19), (23, 26), (39, 43)]
 
-BUCKETS = [(8, 10), (12, 14), (16, 19)]
+# BUCKETS = [(8, 10), (12, 14), (16, 19)]
+BUCKETS = [(16, 19)]
 
 NUM_LAYERS = 3
 HIDDEN_SIZE = 256

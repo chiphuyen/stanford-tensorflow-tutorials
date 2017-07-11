@@ -1,14 +1,18 @@
-"""
-Simple logistic regression model to solve OCR task 
+""" Simple logistic regression model to solve OCR task 
 with MNIST in TensorFlow
 MNIST dataset: yann.lecun.com/exdb/mnist/
-
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
 """
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import time
+
 # Define paramaters for the model
 learning_rate = 0.01
 batch_size = 128
@@ -24,7 +28,7 @@ mnist = input_data.read_data_sets('/data/mnist', one_hot=True)
 # there are 10 classes for each image, corresponding to digits 0 - 9. 
 # each lable is one hot vector.
 X = tf.placeholder(tf.float32, [batch_size, 784], name='X_placeholder') 
-Y = tf.placeholder(tf.float32, [batch_size, 10], name='Y_placeholder')
+Y = tf.placeholder(tf.int32, [batch_size, 10], name='Y_placeholder')
 
 # Step 3: create weights and bias
 # w is initialized to random variables with mean of 0, stddev of 0.01
@@ -41,16 +45,16 @@ logits = tf.matmul(X, w) + b
 
 # Step 5: define loss function
 # use cross entropy of softmax of logits as the loss function
-entropy = tf.nn.softmax_cross_entropy_with_logits(logits, Y, name='loss')
+entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=Y, name='loss')
 loss = tf.reduce_mean(entropy) # computes the mean over all the examples in the batch
 
 # Step 6: define training op
 # using gradient descent with learning rate of 0.01 to minimize loss
-optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
+optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)
 
 with tf.Session() as sess:
 	# to visualize using TensorBoard
-	writer = tf.summary.FileWriter('./my_graph/03/logistic_reg', sess.graph)
+	writer = tf.summary.FileWriter('./graphs/logistic_reg', sess.graph)
 
 	start_time = time.time()
 	sess.run(tf.global_variables_initializer())	
@@ -62,9 +66,9 @@ with tf.Session() as sess:
 			X_batch, Y_batch = mnist.train.next_batch(batch_size)
 			_, loss_batch = sess.run([optimizer, loss], feed_dict={X: X_batch, Y:Y_batch}) 
 			total_loss += loss_batch
-		print 'Average loss epoch {0}: {1}'.format(i, total_loss/n_batches)
+		print('Average loss epoch {0}: {1}'.format(i, total_loss/n_batches))
 
-	print 'Total time: {0} seconds'.format(time.time() - start_time)
+	print('Total time: {0} seconds'.format(time.time() - start_time))
 
 	print('Optimization Finished!') # should be around 0.35 after 25 epochs
 
@@ -79,6 +83,6 @@ with tf.Session() as sess:
 		accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32)) # need numpy.count_nonzero(boolarr) :(
 		total_correct_preds += sess.run(accuracy)	
 	
-	print 'Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples)
+	print('Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples))
 
 	writer.close()

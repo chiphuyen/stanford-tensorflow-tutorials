@@ -1,13 +1,28 @@
 """ Examples to demonstrate how to write an image file to a TFRecord,
-    and how to read a TFRecord file using TFRecordReader.
+and how to read a TFRecord file using TFRecordReader.
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
 """
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
+import sys
+sys.path.append('..')
+
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
 # image supposed to have shape: 480 x 640 x 3 = 921600
-IMAGE_PATH = '/Users/Chip/data/misc/'
+IMAGE_PATH = 'data/'
+
+def _int64_feature(value):
+  return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
+
+def _bytes_feature(value):
+  return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
 def get_image_binary(filename):
     """ You can read in the image using tensorflow too, but it's a drag
@@ -25,9 +40,9 @@ def write_to_tfrecord(label, shape, binary_image, tfrecord_file):
     writer = tf.python_io.TFRecordWriter(tfrecord_file)
     # write label, shape, and image content to the TFRecord file
     example = tf.train.Example(features=tf.train.Features(feature={
-                'label': tf.train.Feature(bytes_list=tf.train.BytesList(value=[label])),
-                'shape': tf.train.Feature(bytes_list=tf.train.BytesList(value=[shape])),
-                'image': tf.train.Feature(bytes_list=tf.train.BytesList(value=[binary_image]))
+                'label': _int64_feature(label),
+                'shape': _bytes_feature(shape),
+                'image': _bytes_feature(binary_image)
                 }))
     writer.write(example.SerializeToString())
     writer.close()
@@ -45,7 +60,7 @@ def read_from_tfrecord(filenames):
     # int64 or float64 values in a serialized tf.Example protobuf.
     tfrecord_features = tf.parse_single_example(tfrecord_serialized,
                         features={
-                            'label': tf.FixedLenFeature([], tf.string),
+                            'label': tf.FixedLenFeature([], tf.int64),
                             'shape': tf.FixedLenFeature([], tf.string),
                             'image': tf.FixedLenFeature([], tf.string),
                         }, name='features')
@@ -54,7 +69,7 @@ def read_from_tfrecord(filenames):
     shape = tf.decode_raw(tfrecord_features['shape'], tf.int32)
     # the image tensor is flattened out, so we have to reconstruct the shape
     image = tf.reshape(image, shape)
-    label = tf.cast(tfrecord_features['label'], tf.string)
+    label = tfrecord_features['label']
     return label, shape, image
 
 def read_tfrecord(tfrecord_file):
@@ -66,14 +81,14 @@ def read_tfrecord(tfrecord_file):
         label, image, shape = sess.run([label, image, shape])
         coord.request_stop()
         coord.join(threads)
-
-    # plt.imshow(image)
-    # plt.show() 
+    print(label)
+    print(shape)
+    plt.imshow(image)
+    plt.show() 
 
 def main():
-    # assume the image has the label Chihuahua. 
-    # in practice, you'd want to use binary numbers for your labels to save space
-    label = 'friday' 
+    # assume the image has the label Chihuahua, which corresponds to class number 1
+    label = 1 
     image_file = IMAGE_PATH + 'friday.jpg'
     tfrecord_file = IMAGE_PATH + 'friday.tfrecord'
     write_tfrecord(label, image_file, tfrecord_file)

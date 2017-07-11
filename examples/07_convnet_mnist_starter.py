@@ -1,13 +1,22 @@
 """ Using convolutional net on MNIST dataset of handwritten digit
 (http://yann.lecun.com/exdb/mnist/)
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
 """
+from __future__ import print_function
+from __future__ import division
 from __future__ import print_function
 
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
 import time 
 
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
+
+import utils
 
 N_CLASSES = 10
 
@@ -20,7 +29,7 @@ LEARNING_RATE = 0.001
 BATCH_SIZE = 128
 SKIP_STEP = 10
 DROPOUT = 0.75
-N_EPOCHS = 50
+N_EPOCHS = 1
 
 # Step 3: create placeholders for features and labels
 # each image in the MNIST data is of shape 28*28 = 784
@@ -39,9 +48,13 @@ dropout = tf.placeholder(tf.float32, name='dropout')
 
 global_step = tf.Variable(0, dtype=tf.int32, trainable=False, name='global_step')
 
+utils.make_dir('checkpoints')
+utils.make_dir('checkpoints/convnet_mnist')
+
 with tf.variable_scope('conv1') as scope:
     # first, reshape the image to [BATCH_SIZE, 28, 28, 1] to make it work with tf.nn.conv2d
     # use the dynamic dimension -1
+    images = tf.reshape(X, shape=[-1, 28, 28, 1])
     
     # TO DO
 
@@ -51,7 +64,7 @@ with tf.variable_scope('conv1') as scope:
     # TO DO
 
     # create biases variable of dimension [32]
-    # use tf.random_normal_initializer()
+    # use tf.constant_initializer(0.0)
     
     # TO DO 
 
@@ -102,6 +115,7 @@ with tf.variable_scope('fc') as scope:
     pool2 = tf.reshape(pool2, [-1, input_features])
 
     # apply relu on matmul of pool2 and w + b
+    fc = tf.nn.relu(tf.matmul(pool2, w) + b, name='relu')
     
     # TO DO
 

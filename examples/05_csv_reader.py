@@ -5,12 +5,20 @@ Note that the heart dataset is originally in txt so I first
 converted it to csv to take advantage of the already laid out columns.
 
 You can download heart.csv in the data folder.
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
 """
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
+import sys
+sys.path.append('..')
 
 import tensorflow as tf
 
 DATA_PATH = 'data/heart.csv'
-BATCH_SIZE = 3
+BATCH_SIZE = 2
 N_FEATURES = 9
 
 def batch_generator(filenames):
@@ -36,11 +44,10 @@ def batch_generator(filenames):
     content = tf.decode_csv(value, record_defaults=record_defaults) 
 
     # convert the 5th column (present/absent) to the binary value 0 and 1
-    condition = tf.equal(content[4], tf.constant('Present'))
-    content[4] = tf.select(condition, tf.constant(1.0), tf.constant(0.0))
+    content[4] = tf.cond(tf.equal(content[4], tf.constant('Present')), lambda: tf.constant(1.0), lambda: tf.constant(0.0))
 
     # pack all 9 features into a tensor
-    features = tf.pack(content[:N_FEATURES])
+    features = tf.stack(content[:N_FEATURES])
 
     # assign the last column to label
     label = content[-1]
@@ -65,7 +72,7 @@ def generate_batches(data_batch, label_batch):
         threads = tf.train.start_queue_runners(coord=coord)
         for _ in range(10): # generate 10 batches
             features, labels = sess.run([data_batch, label_batch])
-            print features
+            print(features)
         coord.request_stop()
         coord.join(threads)
 

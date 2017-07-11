@@ -1,5 +1,7 @@
-""" word2vec with NCE loss 
-and code to visualize the embeddings on TensorBoard
+""" word2vec with NCE loss and code to visualize the embeddings on TensorBoard
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
 """
 
 from __future__ import absolute_import
@@ -7,12 +9,14 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 import numpy as np
 from tensorflow.contrib.tensorboard.plugins import projector
 import tensorflow as tf
 
 from process_data import process_data
+import utils
 
 VOCAB_SIZE = 50000
 BATCH_SIZE = 128
@@ -96,6 +100,7 @@ def train_model(model, batch_gen, num_train_steps, weights_fld):
     saver = tf.train.Saver() # defaults to saving all variables - in this case embed_matrix, nce_weight, nce_bias
 
     initial_step = 0
+    utils.make_dir('checkpoints')
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         ckpt = tf.train.get_checkpoint_state(os.path.dirname('checkpoints/checkpoint'))
@@ -106,8 +111,8 @@ def train_model(model, batch_gen, num_train_steps, weights_fld):
         total_loss = 0.0 # we use this to calculate late average loss in the last SKIP_STEP steps
         writer = tf.summary.FileWriter('improved_graph/lr' + str(LEARNING_RATE), sess.graph)
         initial_step = model.global_step.eval()
-        for index in xrange(initial_step, initial_step + num_train_steps):
-            centers, targets = batch_gen.next()
+        for index in range(initial_step, initial_step + num_train_steps):
+            centers, targets = next(batch_gen)
             feed_dict={model.center_words: centers, model.target_words: targets}
             loss_batch, _, summary = sess.run([model.loss, model.optimizer, model.summary_op], 
                                               feed_dict=feed_dict)
@@ -120,6 +125,7 @@ def train_model(model, batch_gen, num_train_steps, weights_fld):
         
         ####################
         # code to visualize the embeddings. uncomment the below to visualize embeddings
+        # run "'tensorboard --logdir='processed'" to see the embeddings
         # final_embed_matrix = sess.run(model.embed_matrix)
         
         # # it has to variable. constants don't work here. you can't reuse model.embed_matrix

@@ -3,6 +3,10 @@ This repository contains code examples for the course CS 20SI: TensorFlow for De
 It will be updated as the class progresses. <br>
 Detailed syllabus and lecture notes can be found here http://cs20si.stanford.edu
 
+# Note (as of July 11, 2017)
+I've updated the code to TensorFlow 1.2 and Python3, except the code for chatbot. I will update the code for chatbot soon.
+
+
 ## Models include: <br>
 ### In the folder "examples": <br>
 Linear Regression with Chicago's Fire-Theft dataset<br>

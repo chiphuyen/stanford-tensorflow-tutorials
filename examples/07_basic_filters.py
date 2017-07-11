@@ -19,14 +19,24 @@ And to run QueueRunner, you need a coordinator to close to your queue for you.
 Without coordinator, your threads will keep on running outside session and you will have the error:
 ERROR:tensorflow:Exception in QueueRunner: Attempted to use a closed Session.
 
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
+
 """
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
+import sys
+sys.path.append('..')
+
 from matplotlib import gridspec as gridspec
 from matplotlib import pyplot as plt
 import tensorflow as tf
 
 import kernels
 
-FILENAME = '/Users/Chip/data/ImageNetDogs/Images/n02085620-Chihuahua/n02085620_4016.jpg'
+FILENAME = 'data/friday.jpg'
 
 def read_one_image(filename):
     """ This is just to demonstrate how to open an image in TensorFlow,

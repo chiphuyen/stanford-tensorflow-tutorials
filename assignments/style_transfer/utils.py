@@ -18,13 +18,13 @@ from six.moves import urllib
 def download(download_link, file_name, expected_bytes):
     """ Download the pretrained VGG-19 model if it's not already downloaded """
     if os.path.exists(file_name):
-        print("Dataset ready")
+        print("VGG-19 pre-trained model ready")
         return
     print("Downloading the VGG pre-trained model. This might take a while ...")
     file_name, _ = urllib.request.urlretrieve(download_link, file_name)
     file_stat = os.stat(file_name)
     if file_stat.st_size == expected_bytes:
-        print('Successfully downloaded the file', file_name)
+        print('Successfully downloaded VGG-19 pre-trained model', file_name)
     else:
         raise Exception('File ' + file_name +
                         ' might be corrupted. You should try downloading it with a browser.')
@@ -53,3 +53,10 @@ def save_image(path, image):
     image = image[0] # the image
     image = np.clip(image, 0, 255).astype('uint8')
     scipy.misc.imsave(path, image)
+
+def make_dir(path):
+    """ Create a directory if there isn't one already. """
+    try:
+        os.mkdir(path)
+    except OSError:
+        pass

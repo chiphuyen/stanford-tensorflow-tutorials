@@ -3,9 +3,11 @@ Author: Chip Huyen
 Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
 cs20si.stanford.edu
 """
-from __future__ import print_function
-import tensorflow as tf
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
 import numpy as np
+import tensorflow as tf
 
 N_SAMPLES = 1000
 NUM_THREADS = 4
@@ -28,11 +30,15 @@ with tf.Session() as sess:
 	# create a coordinator, launch the queue runner threads.
 	coord = tf.train.Coordinator()
 	enqueue_threads = qr.create_threads(sess, coord=coord, start=True)
-	for step in xrange(100): # do to 100 iterations
-		if coord.should_stop():
-			break
-		data_batch, label_batch = sess.run([data_sample, label_sample])
-	coord.request_stop()
-	coord.join(enqueue_threads)
-
-
+	try:
+		for step in range(100): # do to 100 iterations
+			if coord.should_stop():
+				break
+			data_batch, label_batch = sess.run([data_sample, label_sample])
+			print(data_batch)
+			print(label_batch)
+	except Exception as e:
+		coord.request_stop(e)
+	finally:
+		coord.request_stop()
+		coord.join(enqueue_threads)

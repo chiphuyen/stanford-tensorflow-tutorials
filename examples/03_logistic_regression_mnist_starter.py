@@ -1,12 +1,15 @@
-"""
-Starter code for logistic regression model to solve OCR task 
+""" Starter code for logistic regression model to solve OCR task 
 with MNIST in TensorFlow
 MNIST dataset: yann.lecun.com/exdb/mnist/
-
+Author: Chip Huyen
+Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
+cs20si.stanford.edu
 """
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import time
 
@@ -23,6 +26,7 @@ mnist = input_data.read_data_sets('/data/mnist', one_hot=True)
 # each image in the MNIST data is of shape 28*28 = 784
 # therefore, each image is represented with a 1x784 tensor
 # there are 10 classes for each image, corresponding to digits 0 - 9. 
+# Features are of the type float, and labels are of the type int
 
 
 # Step 3: create weights and bias
@@ -62,9 +66,9 @@ with tf.Session() as sess:
 			# 
 			# 
 			total_loss += loss_batch
-		print 'Average loss epoch {0}: {1}'.format(i, total_loss/n_batches)
+		print('Average loss epoch {0}: {1}'.format(i, total_loss/n_batches))
 
-	print 'Total time: {0} seconds'.format(time.time() - start_time)
+	print('Total time: {0} seconds'.format(time.time() - start_time))
 
 	print('Optimization Finished!') # should be around 0.35 after 25 epochs
 
@@ -79,4 +83,4 @@ with tf.Session() as sess:
 		accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32)) # need numpy.count_nonzero(boolarr) :(
 		total_correct_preds += sess.run(accuracy)	
 	
-	print 'Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples)
+	print('Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples))

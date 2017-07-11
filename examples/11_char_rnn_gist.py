@@ -1,17 +1,22 @@
 """ A clean, no_frills character-level generative language model.
-Created by Danijar Hafner, edited by Chip Huyen
+Created by Danijar Hafner (danijar.com), edited by Chip Huyen
 for the class CS 20SI: "TensorFlow for Deep Learning Research"
 
 Based on Andrej Karpathy's blog: 
 http://karpathy.github.io/2015/05/21/rnn-effectiveness/
 """
-from __future__ import print_function
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+import sys
+sys.path.append('..')
+
 import time
 
 import tensorflow as tf
 
-DATA_PATH = '../data/arvix_abstracts.txt'
+import utils
+
+DATA_PATH = 'data/arvix_abstracts.txt'
 HIDDEN_SIZE = 200
 BATCH_SIZE = 64
 NUM_STEPS = 50
@@ -26,7 +31,7 @@ def vocab_encode(text, vocab):
 def vocab_decode(array, vocab):
     return ''.join([vocab[x - 1] for x in array])
 
-def read_data(filename, vocab, window=NUM_STEPS, overlap=NUM_STEPS/2):
+def read_data(filename, vocab, window=NUM_STEPS, overlap=NUM_STEPS//2):
     for text in open(filename):
         text = vocab_encode(text, vocab)
         for start in range(0, len(text) - window, overlap):
@@ -44,7 +49,7 @@ def read_batch(stream, batch_size=BATCH_SIZE):
     yield batch
 
 def create_rnn(seq, hidden_size=HIDDEN_SIZE):
-    cell = tf.nn.rnn_cell.GRUCell(hidden_size)
+    cell = tf.contrib.rnn.GRUCell(hidden_size)
     in_state = tf.placeholder_with_default(
             cell.zero_state(tf.shape(seq)[0], tf.float32), [None, hidden_size])
     # this line to calculate the real length of seq
@@ -59,7 +64,7 @@ def create_model(seq, temp, vocab, hidden=HIDDEN_SIZE):
     # fully_connected is syntactic sugar for tf.matmul(w, output) + b
     # it will create w and b for us
     logits = tf.contrib.layers.fully_connected(output, len(vocab), None)
-    loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits[:, :-1], seq[:, 1:]))
+    loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits=logits[:, :-1], labels=seq[:, 1:]))
     # sample the next character from Maxwell-Boltzmann Distribution with temperature temp
     # it works equally well without tf.exp
     sample = tf.multinomial(tf.exp(logits[:, -1] / temp), 1)[:, 0] 
@@ -110,6 +115,8 @@ def main():
     loss, sample, in_state, out_state = create_model(seq, temp, vocab)
     global_step = tf.Variable(0, dtype=tf.int32, trainable=False, name='global_step')
     optimizer = tf.train.AdamOptimizer(LR).minimize(loss, global_step=global_step)
+    utils.make_dir('checkpoints')
+    utils.make_dir('checkpoints/arvix')
     training(vocab, seq, loss, optimizer, global_step, temp, sample, in_state, out_state)
     
 if __name__ == '__main__':

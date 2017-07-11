@@ -35,11 +35,11 @@ class ChatBotModel(object):
         # Feeds for inputs. It's a list of placeholders
         print('Create placeholders')
         self.encoder_inputs = [tf.placeholder(tf.int32, shape=[None], name='encoder{}'.format(i))
-                               for i in xrange(config.BUCKETS[-1][0])]
+                               for i in range(config.BUCKETS[-1][0])]
         self.decoder_inputs = [tf.placeholder(tf.int32, shape=[None], name='decoder{}'.format(i))
-                               for i in xrange(config.BUCKETS[-1][1] + 1)]
+                               for i in range(config.BUCKETS[-1][1] + 1)]
         self.decoder_masks = [tf.placeholder(tf.float32, shape=[None], name='mask{}'.format(i))
-                              for i in xrange(config.BUCKETS[-1][1] + 1)]
+                              for i in range(config.BUCKETS[-1][1] + 1)]
 
         # Our targets are decoder inputs shifted by one (to ignore <s> symbol)
         self.targets = self.decoder_inputs[1:]
@@ -85,7 +85,7 @@ class ChatBotModel(object):
                                         softmax_loss_function=self.softmax_loss_function)
             # If we use output projection, we need to project outputs for decoding.
             if self.output_projection:
-                for bucket in xrange(len(config.BUCKETS)):
+                for bucket in range(len(config.BUCKETS)):
                     self.outputs[bucket] = [tf.matmul(output, 
                                             self.output_projection[0]) + self.output_projection[1]
                                             for output in self.outputs[bucket]]
@@ -111,7 +111,7 @@ class ChatBotModel(object):
                 self.gradient_norms = []
                 self.train_ops = []
                 start = time.time()
-                for bucket in xrange(len(config.BUCKETS)):
+                for bucket in range(len(config.BUCKETS)):
                     
                     clipped_grads, norm = tf.clip_by_global_norm(tf.gradients(self.losses[bucket], 
                                                                  trainables),

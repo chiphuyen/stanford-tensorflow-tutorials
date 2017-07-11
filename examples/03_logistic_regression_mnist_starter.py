@@ -73,14 +73,16 @@ with tf.Session() as sess:
 	print('Optimization Finished!') # should be around 0.35 after 25 epochs
 
 	# test the model
+	preds = tf.nn.softmax(logits)
+	correct_preds = tf.equal(tf.argmax(preds, 1), tf.argmax(Y, 1))
+	accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32)) # need numpy.count_nonzero(boolarr) :(
+	
 	n_batches = int(mnist.test.num_examples/batch_size)
 	total_correct_preds = 0
+	
 	for i in range(n_batches):
 		X_batch, Y_batch = mnist.test.next_batch(batch_size)
-		_, loss_batch, logits_batch = sess.run([optimizer, loss, logits], feed_dict={X: X_batch, Y:Y_batch}) 
-		preds = tf.nn.softmax(logits_batch)
-		correct_preds = tf.equal(tf.argmax(preds, 1), tf.argmax(Y_batch, 1))
-		accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32)) # need numpy.count_nonzero(boolarr) :(
-		total_correct_preds += sess.run(accuracy)	
+		accuracy_batch = sess.run([accuracy], feed_dict={X: X_batch, Y:Y_batch}) 
+		total_correct_preds += accuracy_batch	
 	
 	print('Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples))

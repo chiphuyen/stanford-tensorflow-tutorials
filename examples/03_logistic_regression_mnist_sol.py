@@ -77,7 +77,7 @@ with tf.Session() as sess:
 	total_correct_preds = 0
 	for i in range(n_batches):
 		X_batch, Y_batch = mnist.test.next_batch(batch_size)
-		_, loss_batch, logits_batch = sess.run([optimizer, loss, logits], feed_dict={X: X_batch, Y:Y_batch}) 
+		loss_batch, logits_batch = sess.run([loss, logits], feed_dict={X: X_batch, Y:Y_batch}) 
 		preds = tf.nn.softmax(logits_batch)
 		correct_preds = tf.equal(tf.argmax(preds, 1), tf.argmax(Y_batch, 1))
 		accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32)) # need numpy.count_nonzero(boolarr) :(

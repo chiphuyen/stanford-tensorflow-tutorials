@@ -32,7 +32,7 @@ def word2vec(batch_gen):
     # center_words have to be int to work on embedding lookup
 
     # TO DO
-    tf.name_scope('data'):
+    with tf.name_scope('data'):
         center_words = tf.placeholder(tf.int32, [BATCH_SIZE], name='center_words')
         target_words = tf.placeholder(tf.int32, [BATCH_SIZE, 1], name='target_words')
 
@@ -41,7 +41,7 @@ def word2vec(batch_gen):
     # initialized to random uniform -1 to 1
 
     # TOO DO
-    tf.name_scope('embedding_matrix'):
+    with tf.name_scope('embedding_matrix'):
         embed_matrix = tf.Variable(tf.random_uniform([VOCAB_SIZE, EMBED_SIZE], -1.0, 1.0), name='embed_matrix')
 
     # Step 3: define the inference
@@ -49,7 +49,7 @@ def word2vec(batch_gen):
     # embed = tf.nn.embedding_lookup(embed_matrix, center_words, name='embed')
 
     # TO DO
-    tf.name_scope('loss'):
+    with tf.name_scope('loss'):
         embed = tf.nn.embedding_lookup(embed_matrix, center_words, name='embed')
 
         # Step 4: construct variables for NCE loss

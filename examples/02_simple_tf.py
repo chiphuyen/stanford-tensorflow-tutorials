@@ -28,7 +28,7 @@ with tf.Session() as sess:
 #	 [4 6]]
 
 tf.zeros(shape, dtype=tf.float32, name=None)
-creates a tensor of shape and all elements will be zeros (when ran in session)
+#creates a tensor of shape and all elements will be zeros (when ran in session)
 
 x = tf.zeros([2, 3], tf.int32) 
 y = tf.zeros_like(x, optimize=True)

@@ -1,4 +1,4 @@
-""" The mo frills implementation of word2vec skip-gram model using NCE loss. 
+""" The no frills implementation of word2vec skip-gram model using NCE loss.
 Author: Chip Huyen
 Prepared for the class CS 20SI: "TensorFlow for Deep Learning Research"
 cs20si.stanford.edu

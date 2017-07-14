@@ -16,7 +16,7 @@ y = tf.random_uniform([])
 out = tf.cond(tf.greater(x, y), lambda: tf.add(x, y), lambda: tf.subtract(x, y))
 
 ###############################################################################
-# 1b: Create two 0-d tensors x and y randomly selected from -1 and 1.
+# 1b: Create two 0-d tensors x and y randomly selected from the range [-1, 1).
 # Return x + y if x < y, x - y if x > y, 0 otherwise.
 # Hint: Look up tf.case().
 ###############################################################################

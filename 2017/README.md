@@ -29,6 +29,3 @@ Usage of summary ops<br>
 Exercises to be familiar with other special TensorFlow ops<br>
 Demonstration of the danger of lazy loading <br>
 Convolutional GRU (CRGU) (by Lukasz Kaiser)
-
-
-

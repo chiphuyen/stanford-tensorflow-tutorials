@@ -1,5 +1,5 @@
 """ Simple TensorFlow's ops
-Created by Chip Huyen (huyenn@stanford.edu)
+Created by Chip Huyen (chiphuyen@cs.stanford.edu)
 CS20: "TensorFlow for Deep Learning Research"
 cs20.stanford.edu
 """

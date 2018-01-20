@@ -1,6 +1,10 @@
 """
 Simple exercises to get used to TensorFlow API
-You should thoroughly test your code
+You should thoroughly test your code.
+TensorFlow's official documentation should be your best friend here
+CS20: "TensorFlow for Deep Learning Research"
+cs20.stanford.edu
+Created by Chip Huyen (chiphuyen@cs.stanford.edu)
 """
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
@@ -17,7 +21,7 @@ sess = tf.InteractiveSession()
 
 x = tf.random_uniform([])  # Empty array as shape creates a scalar.
 y = tf.random_uniform([])
-out = tf.cond(tf.greater(x, y), lambda: tf.add(x, y), lambda: tf.subtract(x, y))
+out = tf.cond(tf.greater(x, y), lambda: x + y, lambda: x - y)
 print(sess.run(out))
 
 ###############################################################################

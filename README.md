@@ -1,3 +1,6 @@
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Join the https://gitter.im/stanford-tensorflow-tutorials](https://badges.gitter.im/tflearn/tflearn.svg)](https://gitter.im/stanford-tensorflow-tutorials)
+
 # stanford-tensorflow-tutorials
 This repository contains code examples for the course CS 20: TensorFlow for Deep Learning Research. <br>
 It will be updated as the class progresses. <br>

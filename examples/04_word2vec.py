@@ -39,19 +39,17 @@ def word2vec(dataset):
         iterator = dataset.make_initializable_iterator()
         center_words, target_words = iterator.get_next()
 
-    # Assemble this part of the graph on the CPU. You can change it to GPU if you have GPU
-    # Step 2: define weights. In word2vec, it's actually the weights that we care about
-    with tf.name_scope("embed"):
+    """ Step 2 + 3: define weights and embedding lookup.
+    In word2vec, it's actually the weights that we care about 
+    """
+    with tf.name_scope('embed'):
         embed_matrix = tf.get_variable('embed_matrix', 
                                         shape=[VOCAB_SIZE, EMBED_SIZE],
                                         initializer=tf.random_uniform_initializer())
+        embed = tf.nn.embedding_lookup(embed_matrix, center_words, name='embedding')
 
+    # Step 4: construct variables for NCE loss and define loss function
     with tf.name_scope('loss'):
-        # Step 3: define the inference
-        embed = tf.nn.embedding_lookup(embed_matrix, center_words, name='embed')
-
-        # Step 4: define loss function
-        # construct variables for NCE loss
         nce_weight = tf.get_variable('nce_weight', shape=[VOCAB_SIZE, EMBED_SIZE],
                         initializer=tf.truncated_normal_initializer(stddev=1.0 / (EMBED_SIZE ** 0.5)))
         nce_bias = tf.get_variable('nce_bias', initializer=tf.zeros([VOCAB_SIZE]))

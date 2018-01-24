@@ -42,28 +42,28 @@ class SkipGramModel:
         self.lr = learning_rate
         self.global_step = tf.get_variable('global_step', initializer=tf.constant(0), trainable=False)
         self.skip_step = SKIP_STEP
+        self.dataset = dataset
 
     def _import_data(self):
         """ Step 1: import data
         """
-        self.iterator = dataset.make_initializable_iterator()
-        self.center_words, self.target_words = self.iterator.get_next()
+        with tf.name_scope('data'):
+            self.iterator = self.dataset.make_initializable_iterator()
+            self.center_words, self.target_words = self.iterator.get_next()
 
     def _create_embedding(self):
-        """ Step 2: define weights. In word2vec, it's actually the weights that we care about """
-        # Assemble this part of the graph on the CPU. You can change it to GPU if you have GPU
-        with tf.name_scope("embed"):
+        """ Step 2 + 3: define weights and embedding lookup.
+        In word2vec, it's actually the weights that we care about 
+        """
+        with tf.name_scope('embed'):
             self.embed_matrix = tf.get_variable('embed_matrix', 
                                                 shape=[self.vocab_size, self.embed_size],
                                                 initializer=tf.random_uniform_initializer())
+            self.embed = tf.nn.embedding_lookup(self.embed_matrix, self.center_words, name='embedding')
 
     def _create_loss(self):
-        """ Step 3 + 4: define the model + the loss function """
-        with tf.name_scope("loss"):
-            # Step 3: define the inference
-            embed = tf.nn.embedding_lookup(self.embed_matrix, self.center_words, name='embed')
-
-            # Step 4: define loss function
+        """ Step 4: define the loss function """
+        with tf.name_scope('loss'):
             # construct variables for NCE loss
             nce_weight = tf.get_variable('nce_weight', 
                         shape=[self.vocab_size, self.embed_size],
@@ -74,7 +74,7 @@ class SkipGramModel:
             self.loss = tf.reduce_mean(tf.nn.nce_loss(weights=nce_weight, 
                                                 biases=nce_bias, 
                                                 labels=self.target_words, 
-                                                inputs=embed, 
+                                                inputs=self.embed, 
                                                 num_sampled=self.num_sampled, 
                                                 num_classes=self.vocab_size), name='loss')
     def _create_optimizer(self):
@@ -92,6 +92,7 @@ class SkipGramModel:
 
     def build_graph(self):
         """ Build the graph for our model """
+        self._import_data()
         self._create_embedding()
         self._create_loss()
         self._create_optimizer()
@@ -157,8 +158,7 @@ class SkipGramModel:
             embedding.tensor_name = embedding_var.name
             
             # link this tensor to its metadata file, in this case the first NUM_VISUALIZE words of vocab
-            embedding.metadata_path = os.path.join(visual_fld,
-                'vocab_' + str(num_visualize) + '.tsv')
+            embedding.metadata_path = os.path.join(visual_fld, 'vocab_' + str(num_visualize) + '.tsv')
 
             # saves a configuration file that TensorBoard will read during startup.
             projector.visualize_embeddings(summary_writer, config)

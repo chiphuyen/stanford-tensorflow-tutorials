@@ -61,7 +61,7 @@ def most_common_words(visual_fld, num_visualize):
     """
     words = open(os.path.join(visual_fld, 'vocab.tsv'), 'r').readlines()[:num_visualize]
     words = [word for word in words]
-    file = open(os.path.join(visual_fld, 'vocab_' + str(num_visualize) + '.tsv'), "w")
+    file = open(os.path.join(visual_fld, 'vocab_' + str(num_visualize) + '.tsv'), 'w')
     for word in words:
         file.write(word)
     file.close()

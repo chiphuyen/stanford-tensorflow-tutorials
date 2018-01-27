@@ -158,7 +158,7 @@ class SkipGramModel:
             embedding.tensor_name = embedding_var.name
             
             # link this tensor to its metadata file, in this case the first NUM_VISUALIZE words of vocab
-            embedding.metadata_path = os.path.join(visual_fld, 'vocab_' + str(num_visualize) + '.tsv')
+            embedding.metadata_path = 'vocab_' + str(num_visualize) + '.tsv'
 
             # saves a configuration file that TensorBoard will read during startup.
             projector.visualize_embeddings(summary_writer, config)

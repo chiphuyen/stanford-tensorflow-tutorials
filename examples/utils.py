@@ -1,9 +1,3 @@
-""" Various utilities used for the course
-CS20: "TensorFlow for Deep Learning Research"
-cs20.stanford.edu
-Created by Chip Huyen (chiphuyen@cs.stanford.edu)
-"""
-
 import os
 import gzip
 import shutil
@@ -123,6 +117,22 @@ def read_mnist(path, flatten=True, num_train=55000):
     val_img, val_labels = imgs[val_idx, :], labels[val_idx, :]
     test = parse_data(path, 't10k', flatten)
     return (train_img, train_labels), (val_img, val_labels), test
+
+def get_mnist_dataset(batch_size):
+    # Step 1: Read in data
+    mnist_folder = 'data/mnist'
+    download_mnist(mnist_folder)
+    train, val, test = read_mnist(mnist_folder, flatten=False)
+
+    # Step 2: Create datasets and iterator
+    train_data = tf.data.Dataset.from_tensor_slices(train)
+    train_data = train_data.shuffle(10000) # if you want to shuffle your data
+    train_data = train_data.batch(batch_size)
+
+    test_data = tf.data.Dataset.from_tensor_slices(test)
+    test_data = test_data.batch(batch_size)
+
+    return train_data, test_data
     
 def show(image):
     """

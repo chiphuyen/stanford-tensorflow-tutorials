@@ -1,3 +1,13 @@
+""" Implementation in TensorFlow of the paper 
+A Neural Algorithm of Artistic Style (Gatys et al., 2016) 
+
+Created by Chip Huyen (chiphuyen@cs.stanford.edu)
+CS20: "TensorFlow for Deep Learning Research"
+cs20.stanford.edu
+
+For more details, please read the assignment handout:
+https://docs.google.com/document/d/1FpueD-3mScnD0SJQDtwmOb1FrSwo1NGowkXzMwPoLH4/edit?usp=sharing
+"""
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 import time

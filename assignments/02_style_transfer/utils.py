@@ -6,6 +6,7 @@ CS20: "TensorFlow for Deep Learning Research"
 cs20.stanford.edu
 
 For more details, please read the assignment handout:
+https://docs.google.com/document/d/1FpueD-3mScnD0SJQDtwmOb1FrSwo1NGowkXzMwPoLH4/edit?usp=sharing
 
 """
 

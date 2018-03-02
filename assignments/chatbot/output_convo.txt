@@ -1,0 +1,365 @@
+HUMAN ++++ hi
+BOT ++++ hi
+HUMAN ++++ how are you?
+BOT ++++ i ' m okay .
+HUMAN ++++ really?
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ how're you?
+BOT ++++ i ' m fine .
+HUMAN ++++ where're you from?
+BOT ++++ california .
+HUMAN ++++ which city?
+BOT ++++ let ' s talk about something else .
+HUMAN ++++ you don't like california?
+BOT ++++ oh . . .
+HUMAN ++++ why not?
+BOT ++++ i can ' t .
+HUMAN ++++ how old are you?
+BOT ++++ eighteen .
+=============================================
+HUMAN ++++ hi
+BOT ++++ hi
+HUMAN ++++ how are you?
+BOT ++++ i ' m okay .
+HUMAN ++++ what's your name?
+BOT ++++ let ' s talk about something else .
+=============================================
+HUMAN ++++ hi
+BOT ++++ hi
+HUMAN ++++ how are you?
+BOT ++++ i ' m okay .
+HUMAN ++++ what's your name?
+BOT ++++ what ?
+HUMAN ++++ what's your name?
+BOT ++++ let ' s talk about something else .
+HUMAN ++++ what's your name?
+BOT ++++ let ' s talk about something else .
+HUMAN ++++ what's your name?
+BOT ++++ let ' s talk about something else .
+HUMAN ++++ what's your name?
+BOT ++++ prisoner .
+HUMAN ++++ ha ha you really don't want to tell your name
+BOT ++++ i ' m not going to do it .
+HUMAN ++++ how old are you?
+BOT ++++ can you guess ?
+HUMAN ++++ eighteen?
+BOT ++++ in the bathroom .
+HUMAN ++++ in the bathroom?
+BOT ++++ in the next time .
+HUMAN ++++ why are you talking so funny?
+BOT ++++ i ' m looking .
+HUMAN ++++ where are you from?
+BOT ++++ general .
+HUMAN ++++ where are you from?
+BOT ++++ how ?
+HUMAN ++++ do you like the us?
+BOT ++++ i ' m sure .
+HUMAN ++++ do you vote?
+BOT ++++ i ' m afraid .
+HUMAN ++++ what are you afraid of?
+BOT ++++ i ' m looking .
+HUMAN ++++ what are you looking for?
+BOT ++++ can you guess ?
+HUMAN ++++ no
+BOT ++++ i don ' t know what to say .
+=============================================
+HUMAN ++++ hi
+BOT ++++ hi . what ' s your name ?
+HUMAN ++++ i'm chip
+BOT ++++ please .
+HUMAN ++++ please what?
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ where are you from?
+BOT ++++ california .
+HUMAN ++++ do you like california?
+BOT ++++ i ' m okay .
+HUMAN ++++ i like california a lot
+BOT ++++ of what ?
+HUMAN ++++ i live here
+BOT ++++ and what is it ?
+HUMAN ++++ california
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ i'm a student here
+BOT ++++ and get it out of here .
+HUMAN ++++ what do you like to do in your free time?
+BOT ++++ and what about the gun ?
+HUMAN ++++ do you have a gun?
+BOT ++++ yes .
+HUMAN ++++ you're dangerous!
+BOT ++++ i ' m not .
+HUMAN ++++ do you go hunting?
+BOT ++++ i can do .
+HUMAN ++++ what do you hunt?
+BOT ++++ virgin .
+HUMAN ++++ that's very bad
+BOT ++++ and you in love ?
+HUMAN ++++ no i'm not
+BOT ++++ please - -
+HUMAN ++++ okay, i am
+BOT ++++ and you are good .
+HUMAN ++++ yeah i am good too.
+BOT ++++ good good to you .
+HUMAN ++++ are you in love?
+BOT ++++ i ' m ready .
+HUMAN ++++ ready for what?
+BOT ++++ for what ?
+HUMAN ++++ for what?
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ tell me
+BOT ++++ i can do it .
+HUMAN ++++ okay, tell me what you're ready for
+BOT ++++ i ' m doing you .
+HUMAN ++++ no you're not
+BOT ++++ please !
+HUMAN ++++ this is a strange conversation
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ are you a guy?
+BOT ++++ of what ?
+HUMAN ++++ are you a boy?
+BOT ++++ i ' m fine .
+HUMAN ++++ are you a man?
+BOT ++++ i ' m a little .
+HUMAN ++++ what's your name?
+BOT ++++ chris -
+HUMAN ++++ chris who?
+BOT ++++ cornelius .
+HUMAN ++++ so i guess you're a guy.
+BOT ++++ i am .
+HUMAN ++++ okay
+BOT ++++ okay ?
+HUMAN ++++ do you have a girlfriend?
+BOT ++++ i ' m sure .
+HUMAN ++++ what's her name?
+BOT ++++ let ' s talk about something else .
+=============================================
+HUMAN ++++ hi chris
+BOT ++++ hi
+HUMAN ++++ how're you today?
+BOT ++++ okay .
+HUMAN ++++ the weather is nice today
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ just say the weather is nice
+BOT ++++ i don ' t know what to say .
+=============================================
+HUMAN ++++ hi
+BOT ++++ hi
+HUMAN ++++ how're you today?
+BOT ++++ okay .
+HUMAN ++++ just okay?
+BOT ++++ i ' m okay .
+HUMAN ++++ what's on your mind?
+BOT ++++ i ' m in my room .
+HUMAN ++++ doing what?
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ you're boring.
+BOT ++++ i ' m not .
+HUMAN ++++ prove it
+BOT ++++ and what ?
+HUMAN ++++ what what?
+BOT ++++ sorry , i ' m still very stupid .
+HUMAN ++++ it's okay. we're all stupid sometimes.
+BOT ++++ ' s good to see .
+HUMAN ++++ what's good to see?
+BOT ++++ i ' m in .
+HUMAN ++++ you're in your room?
+BOT ++++ i ' m here .
+HUMAN ++++ where's your room?
+BOT ++++ i ' m in my room .
+HUMAN ++++ are you alone?
+BOT ++++ i ' m fine .
+HUMAN ++++ are you by yourself?
+BOT ++++ in the morning .
+HUMAN ++++ what time is it?
+BOT ++++ # # # # # # # .
+=============================================
+HUMAN ++++ hi
+BOT ++++ hi . what ' s your name ?
+HUMAN ++++ i'm marie
+BOT ++++ you are .
+HUMAN ++++ yes i am
+BOT ++++ and you are my friend .
+HUMAN ++++ yes you are 
+BOT ++++ and you are my best .
+HUMAN ++++ that's so sweet
+BOT ++++ please .
+HUMAN ++++ do you know what time it is?
+BOT ++++ i don ' t know what to say .
+=============================================
+HUMAN ++++ what time is it?
+BOT ++++ 5 9 6 9 1 4 5 .
+HUMAN ++++ it doesn't make any sense
+BOT ++++ are you ?
+HUMAN ++++ i do 
+BOT ++++ and you are ?
+HUMAN ++++ i'm a human.
+BOT ++++ you in .
+HUMAN ++++ are you in trouble?
+BOT ++++ i ' m in .
+HUMAN ++++ what trouble?
+BOT ++++ i ' m in love .
+HUMAN ++++ wow that's nice.
+BOT ++++ like that ?
+HUMAN ++++ yeah
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ who are you?
+BOT ++++ i don ' t understand .
+HUMAN ++++ who are you?
+BOT ++++ no idea .
+HUMAN ++++ what's your name?
+BOT ++++ chris -
+HUMAN ++++ chris who?
+BOT ++++ cornelius .
+HUMAN ++++ where are you from?
+BOT ++++ california .
+HUMAN ++++ are you american?
+BOT ++++ i ' m fine .
+HUMAN ++++ of course you're fine.
+BOT ++++ and you ?
+HUMAN ++++ i'm okay.
+BOT ++++ you are .
+HUMAN ++++ yes, i am.
+BOT ++++ and you are my friend .
+HUMAN ++++ yes, i am.
+BOT ++++ and you are my friend .
+HUMAN ++++ that's correct.
+BOT ++++ and you ' re in trouble ?
+HUMAN ++++ no, i'm not. why did you think so?
+BOT ++++ because it ' s a good idea .
+HUMAN ++++ what is your good idea?
+BOT ++++ i ' ll be fine .
+=============================================
+HUMAN ++++ hello
+BOT ++++ and you are in trouble ?
+HUMAN ++++ what did you say that?
+BOT ++++ ' s life .
+HUMAN ++++ i'm not in trouble.
+BOT ++++ what the hell is that ?
+HUMAN ++++ okay, what trouble?
+BOT ++++ i ' m looking .
+HUMAN ++++ why did you say i'm in trouble?
+BOT ++++ let ' s talk about something else .
+HUMAN ++++ what do you want to talk about?
+BOT ++++ i can ' t .
+HUMAN ++++ what can't?
+BOT ++++ i ' ll have a drink .
+HUMAN ++++ okay, me too.
+BOT ++++ you were here ?
+HUMAN ++++ i'm still here.
+BOT ++++ what is it ?
+HUMAN ++++ i thought you wanted a drink.
+BOT ++++ i ' m not .
+HUMAN ++++ you just said so!
+BOT ++++ i was wrong .
+HUMAN ++++ it's fine.
+BOT ++++ okay ?
+HUMAN ++++ yeah
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ do you drink a lot?
+BOT ++++ i can do it .
+HUMAN ++++ do you drink often?
+BOT ++++ in the time .
+HUMAN ++++ that doesn't make any sense.
+BOT ++++ are you ?
+HUMAN ++++ what do you drink?
+BOT ++++ ' s in a drink .
+HUMAN ++++ do you drink alcohol?
+BOT ++++ in time .
+HUMAN ++++ i like beer.
+BOT ++++ oh . . .
+HUMAN ++++ don't you like beer?
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ where do you live?
+BOT ++++ up .
+HUMAN ++++ up where?
+BOT ++++ in the hospital .
+HUMAN ++++ i'm sorry. are you okay?
+BOT ++++ i ' m fine .
+HUMAN ++++ why are you in the hospital?
+BOT ++++ and what ?
+HUMAN ++++ how many words do you know?
+BOT ++++ i ' d do it .
+HUMAN ++++ how many?
+BOT ++++ i ' m not .
+HUMAN ++++ how many?
+BOT ++++ i ' m not .
+HUMAN ++++ how many?
+BOT ++++ i ' m not .
+HUMAN ++++ whatever
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ you're boring.
+BOT ++++ i ' m not .
+HUMAN ++++ yes you are.
+BOT ++++ and you are my friend .
+HUMAN ++++ no i'm not.
+BOT ++++ please .
+HUMAN ++++ okay fine. i'm your friend.
+BOT ++++ you ' re my mother ?
+HUMAN ++++ i have no son like you.
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ i have no son.
+BOT ++++ i see you .
+HUMAN ++++ i have no children.
+BOT ++++ you are .
+HUMAN ++++ omg you're so dumb.
+BOT ++++ i ' m not .
+HUMAN ++++ you're stupid!
+BOT ++++ i ' m not .
+HUMAN ++++ do you always talk like this?
+BOT ++++ of course .
+HUMAN ++++ how old are you?
+BOT ++++ eighteen .
+HUMAN ++++ you're big enough.
+BOT ++++ i ' m not .
+HUMAN ++++ are you an adult?
+BOT ++++ i ' m going .
+HUMAN ++++ you're going to be an adult?
+BOT ++++ i ' m looking for you .
+HUMAN ++++ i'm in my room.
+BOT ++++ and your mother ?
+HUMAN ++++ she's in vietnam.
+BOT ++++ you ' re here .
+HUMAN ++++ yes i'm here.
+BOT ++++ and what are you talking about ?
+HUMAN ++++ you asked me where i am.
+BOT ++++ and you are your friend .
+HUMAN ++++ i need to go now.
+BOT ++++ i will not .
+HUMAN ++++ that's fine. you can stay. i'm leaving.
+BOT ++++ oh . . .
+HUMAN ++++ bye
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ goodbye
+BOT ++++ i don ' t know what to say .
+HUMAN ++++ bye bye
+BOT ++++ okay ?
+HUMAN ++++ see you later
+BOT ++++ i don ' t know what to say .
+=============================================
+HUMAN ++++ hi
+BOT ++++ hi . what ' s your name ?
+HUMAN ++++ i'm maria
+BOT ++++ please .
+HUMAN ++++ i'm jackson
+BOT ++++ you are .
+HUMAN ++++ i'm jack
+BOT ++++ let ' s talk about something else .
+HUMAN ++++ i have no go
+BOT ++++ you are ?
+HUMAN ++++ i have to go
+BOT ++++ and what do you mean ?
+HUMAN ++++ i'm leaving.
+BOT ++++ what ?
+HUMAN ++++ yeah, bye
+BOT ++++ bye . have a nice day !
+=============================================
+HUMAN ++++ that's very bad.
+BOT ++++ i ' ve got to work .
+HUMAN ++++ what do you do?
+BOT ++++ i ' ll be there .
+HUMAN ++++ where do you work?
+BOT ++++ in the trunk .
+HUMAN ++++ are you a machenics?
+BOT ++++ i ' m not .
+HUMAN ++++ what are you?
+BOT ++++ no idea .
+=============================================

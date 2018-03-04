@@ -1,4 +1,4 @@
-xfrom collections import Counter
+from collections import Counter
 import random
 import os
 import sys

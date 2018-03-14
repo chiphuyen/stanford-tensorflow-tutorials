@@ -86,31 +86,6 @@ class ChatBotModel:
                                         config.BUCKETS,
                                         lambda x, y: _seq2seq_f(x, y, False),
                                         softmax_loss_function=self.softmax_loss_function)
-
-        # if self.fw_only:
-        #     self.outputs, self.losses = tf.contrib.training.bucket_by_sequence_length(
-        #                                 self.encoder_inputs, 
-        #                                 self.decoder_inputs, 
-        #                                 self.targets,
-        #                                 self.decoder_masks, 
-        #                                 config.BUCKETS, 
-        #                                 lambda x, y: _seq2seq_f(x, y, True),
-        #                                 softmax_loss_function=self.softmax_loss_function)
-        #     # If we use output projection, we need to project outputs for decoding.
-        #     if self.output_projection:
-        #         for bucket in range(len(config.BUCKETS)):
-        #             self.outputs[bucket] = [tf.matmul(output, 
-        #                                     self.output_projection[0]) + self.output_projection[1]
-        #                                     for output in self.outputs[bucket]]
-        # else:
-        #     self.outputs, self.losses = tf.contrib.training.bucket_by_sequence_length(
-        #                                 self.encoder_inputs, 
-        #                                 self.decoder_inputs, 
-        #                                 self.targets,
-        #                                 self.decoder_masks,
-        #                                 config.BUCKETS,
-        #                                 lambda x, y: _seq2seq_f(x, y, False),
-        #                                 softmax_loss_function=self.softmax_loss_function)
         print('Time:', time.time() - start)
 
     def _creat_optimizer(self):

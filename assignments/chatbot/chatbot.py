@@ -169,7 +169,8 @@ def _get_user_input():
     """ Get user's input, which will be transformed into encoder input later """
     print("> ", end="")
     sys.stdout.flush()
-    return sys.stdin.readline()
+    text = sys.stdin.readline()
+    return data.tokenize_helper(text)
 
 def _find_right_bucket(length):
     """ Find the proper bucket for an encoder input based on its length """
@@ -183,7 +184,6 @@ def _construct_response(output_logits, inv_dec_vocab):
     
     This is a greedy decoder - outputs are just argmaxes of output_logits.
     """
-    print(output_logits[0])
     outputs = [int(np.argmax(logit, axis=1)) for logit in output_logits]
     # If there is an EOS symbol in outputs, cut them at that point.
     if config.EOS_ID in outputs:

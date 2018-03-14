@@ -26,14 +26,21 @@ import config
 def get_lines():
     id2line = {}
     file_path = os.path.join(config.DATA_PATH, config.LINE_FILE)
+    print(config.LINE_FILE)
     with open(file_path, 'r', errors='ignore') as f:
-        lines = f.readlines()
-        for i, line in enumerate(lines):
-            parts = line.split(' +++$+++ ')
-            if len(parts) == 5:
-                if parts[4][-1] == '\n':
-                    parts[4] = parts[4][:-1]
-                id2line[parts[0]] = parts[4]
+        # lines = f.readlines()
+        # for line in lines:
+        i = 0
+        try:
+            for line in f:
+                parts = line.split(' +++$+++ ')
+                if len(parts) == 5:
+                    if parts[4][-1] == '\n':
+                        parts[4] = parts[4][:-1]
+                    id2line[parts[0]] = parts[4]
+                i += 1
+        except UnicodeDecodeError:
+            print(i, line)
     return id2line
 
 def get_convos():
@@ -54,63 +61,12 @@ def get_convos():
 def question_answers(id2line, convos):
     """ Divide the dataset into two sets: questions and answers. """
     questions, answers = [], []
-    seen_questions, seen_answers = set(), set()
-    repeated = 0
     for convo in convos:
         for index, line in enumerate(convo[:-1]):
-            if not convo[index] in id2line or not convo[index+1] in id2line:
-                continue
-            q = id2line[convo[index]]
-            a = id2line[convo[index + 1]]
-            # if q in seen_questions or a in seen_answers:
-            if q in seen_questions:
-                print('Q:', q)
-                print('A:', a)
-                repeated += 1
-                continue
-            questions.append(q)
-            answers.append(a)
-            seen_questions.add(q)
-            # seen_answers.add(a)
+            questions.append(id2line[convo[index]])
+            answers.append(id2line[convo[index + 1]])
     assert len(questions) == len(answers)
-    print('Total repeated:', repeated)
     return questions, answers
-
-def tokenize_helper(line):
-    tokens = basic_tokenizer(line)
-    text = ' '.join(tokens)
-    for a, b in config.CONTRACTIONS:
-        text = text.replace(a, b)
-    return text
-
-def tokenize_data():
-    print('Tokenizing the data ...')
-    # filenames = ['test.enc', 'test.dec', 'train.enc', 'train.dec']
-    modes = ['train', 'test']
-    seen_questions = set()
-    for mode in modes:
-        q_file = os.path.join(config.PROCESSED_PATH, mode + '.enc')
-        a_file = os.path.join(config.PROCESSED_PATH, mode + '.dec')
-        q_out = open(os.path.join(config.PROCESSED_PATH, mode + '.enc.tok'), 'w')
-        a_out = open(os.path.join(config.PROCESSED_PATH, mode + '.dec.tok'), 'w')
-
-        q_lines = open(q_file, 'r').readlines()
-        a_lines = open(a_file, 'r').readlines()
-        n = len(q_lines)
-        repeated = 0
-
-        for i in range(n):
-            q, a = q_lines[i], a_lines[i]
-            q_clean = tokenize_helper(q)
-            if q_clean in seen_questions:
-                print(q_clean)
-                repeated += 1
-                continue
-            seen_questions.add(q_clean)
-            q_out.write(q_clean + '\n')
-            a_clean = tokenize_helper(a)
-            a_out.write(a_clean + '\n')
-        print('Total repeated in', mode, ':', repeated)
 
 def prepare_dataset(questions, answers):
     # create path to store all the train & test encoder & decoder
@@ -122,7 +78,7 @@ def prepare_dataset(questions, answers):
     filenames = ['train.enc', 'train.dec', 'test.enc', 'test.dec']
     files = []
     for filename in filenames:
-        files.append(open(os.path.join(config.PROCESSED_PATH, filename), 'w'))
+        files.append(open(os.path.join(config.PROCESSED_PATH, filename),'w'))
 
     for i in range(len(questions)):
         if i in test_ids:
@@ -142,14 +98,13 @@ def make_dir(path):
     except OSError:
         pass
 
-def basic_tokenizer(line, normalize_digits=False):
+def basic_tokenizer(line, normalize_digits=True):
     """ A basic tokenizer to tokenize text into tokens.
     Feel free to change this to suit your need. """
     line = re.sub('<u>', '', line)
     line = re.sub('</u>', '', line)
     line = re.sub('\[', '', line)
     line = re.sub('\]', '', line)
-    line = line.replace('`', "'")
     words = []
     _WORD_SPLIT = re.compile("([.,!?\"'-<>:;)(])")
     _DIGIT_RE = re.compile(r"\d")
@@ -162,15 +117,14 @@ def basic_tokenizer(line, normalize_digits=False):
             words.append(token)
     return words
 
-def build_vocab(filename, normalize_digits=False):
+def build_vocab(filename, normalize_digits=True):
     in_path = os.path.join(config.PROCESSED_PATH, filename)
-    out_path = os.path.join(config.PROCESSED_PATH, 'vocab.{}'.format(filename[-7:-4]))
+    out_path = os.path.join(config.PROCESSED_PATH, 'vocab.{}'.format(filename[-3:]))
 
     vocab = {}
     with open(in_path, 'r') as f:
         for line in f.readlines():
-            tokens = line.split()
-            for token in tokens:
+            for token in basic_tokenizer(line):
                 if not token in vocab:
                     vocab[token] = 0
                 vocab[token] += 1
@@ -184,14 +138,14 @@ def build_vocab(filename, normalize_digits=False):
         index = 4
         for word in sorted_vocab:
             if vocab[word] < config.THRESHOLD:
-                with open('config.py', 'a') as cf:
-                    if 'enc' in filename:
-                        cf.write('ENC_VOCAB = ' + str(index) + '\n')
-                    else:
-                        cf.write('DEC_VOCAB = ' + str(index) + '\n')
                 break
             f.write(word + '\n')
             index += 1
+        with open('config.py', 'a') as cf:
+            if filename[-3:] == 'enc':
+                cf.write('ENC_VOCAB = ' + str(index) + '\n')
+            else:
+                cf.write('DEC_VOCAB = ' + str(index) + '\n')
 
 def load_vocab(vocab_path):
     with open(vocab_path, 'r') as f:
@@ -199,14 +153,14 @@ def load_vocab(vocab_path):
     return words, {words[i]: i for i in range(len(words))}
 
 def sentence2id(vocab, line):
-    return [vocab.get(token, vocab['<unk>']) for token in line]
+    return [vocab.get(token, vocab['<unk>']) for token in basic_tokenizer(line)]
 
 def token2id(data, mode):
     """ Convert all the tokens in the data into their corresponding
     index in the vocabulary. """
     vocab_path = 'vocab.' + mode
-    in_path = data + '.' + mode + '.tok'
-    out_path = data + '.' + mode + '.ids'
+    in_path = data + '.' + mode
+    out_path = data + '_ids.' + mode
 
     _, vocab = load_vocab(os.path.join(config.PROCESSED_PATH, vocab_path))
     in_file = open(os.path.join(config.PROCESSED_PATH, in_path), 'r')
@@ -233,8 +187,8 @@ def prepare_raw_data():
 
 def process_data():
     print('Preparing data to be model-ready ...')
-    build_vocab('train.enc.tok')
-    build_vocab('train.dec.tok')
+    build_vocab('train.enc')
+    build_vocab('train.dec')
     token2id('train', 'enc')
     token2id('train', 'dec')
     token2id('test', 'enc')
@@ -304,5 +258,4 @@ def get_batch(data_bucket, bucket_id, batch_size=1):
 
 if __name__ == '__main__':
     prepare_raw_data()
-    tokenize_data()
     process_data()
